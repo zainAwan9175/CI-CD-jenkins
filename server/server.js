@@ -7,7 +7,10 @@ const cloudinary = require("cloudinary");
 
 
 // Load environment variables
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 
 cloudinary.config({
   cloud_name:process.env.CLOUD_NAME,
