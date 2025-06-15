@@ -1,21 +1,21 @@
 
 
-services:
-  # React Frontend
-  client:
-    build: ./client
-    ports:
-      - "3000:3000"
-    env_file:
-      - ./client/.env
-    depends_on:
-      - server
-      - socket
-    volumes:
-      - ./client:/app
-      - /app/node_modules
-    networks:
-      - mern_network
+# services:
+#   # React Frontend
+#   client:
+#     build: ./client
+#     ports:
+#       - "3000:3000"
+#     env_file:
+#       - ./client/.env
+#     depends_on:
+#       - server
+#       - socket
+#     volumes:
+#       - ./client:/app
+#       - /app/node_modules
+#     networks:
+#       - mern_network
 
   # Express Backend API
   server:
@@ -33,19 +33,19 @@ services:
     restart: unless-stopped
 
   # Socket.io Chat Service
-  socket:
-    build: ./socket
-    ports:
-      - "8000:8000"
-    env_file:
-      - ./socket/.env
-    command: npm run dev         # Use nodemon script
-    volumes:
-      - ./socket:/app
-      - /app/node_modules
-    networks:
-      - mern_network
-    restart: unless-stopped
+  # socket:
+  #   build: ./socket
+  #   ports:
+  #     - "8000:8000"
+  #   env_file:
+  #     - ./socket/.env
+  #   command: npm run dev         # Use nodemon script
+  #   volumes:
+  #     - ./socket:/app
+  #     - /app/node_modules
+  #   networks:
+  #     - mern_network
+  #   restart: unless-stopped
 
 # Define custom network
 networks:
