@@ -1,4 +1,4 @@
-
+version: '3.8'
 
 services:
   # React Frontend
@@ -24,10 +24,11 @@ services:
       - "5000:5000"
     env_file:
       - ./server/.env
-    command: npm run dev         # Use nodemon script
+    command: npm run dev
     volumes:
       - ./server:/app
       - /app/node_modules
+      - ./server/.env:/app/.env  # ✅ Mount the .env file explicitly
     networks:
       - mern_network
     restart: unless-stopped
@@ -39,15 +40,15 @@ services:
       - "8000:8000"
     env_file:
       - ./socket/.env
-    command: npm run dev         # Use nodemon script
+    command: npm run dev
     volumes:
       - ./socket:/app
       - /app/node_modules
+      - ./socket/.env:/app/.env  # ✅ Mount the .env file explicitly
     networks:
       - mern_network
     restart: unless-stopped
 
-# Define custom network
 networks:
   mern_network:
     driver: bridge
