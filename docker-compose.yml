@@ -28,6 +28,7 @@ services:
     volumes:
       - ./server:/app
       - /app/node_modules
+      - ./server/.env:/app/.env  # ✅ Mount the .env file explicitly
     networks:
       - mern_network
     restart: unless-stopped
@@ -43,6 +44,7 @@ services:
     volumes:
       - ./socket:/app
       - /app/node_modules
+      - ./socket/.env:/app/.env  # ✅ Mount the .env file explicitly
     networks:
       - mern_network
     restart: unless-stopped
