@@ -1,23 +1,22 @@
-# Use Node.js 18 with Alpine (lightweight)
 FROM node:18-alpine
 
-# Set working directory inside container
+# Set working directory
 WORKDIR /app
 
-# Copy only package.json and package-lock.json for better caching
+# Copy dependencies files
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the environment file
-#COPY .env .env
-
-# Copy remaining app files
+# Copy the app
 COPY . .
 
-# Expose the default React port
+# Set Node.js heap memory limit
+ENV NODE_OPTIONS="--max-old-space-size=1024"
+
+# Expose port
 EXPOSE 3000
 
-# Start the development server
+# Start the app
 CMD ["npm", "start"]
